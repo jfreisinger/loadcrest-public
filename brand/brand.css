@@ -1,0 +1,50 @@
+/* ============================================================
+   LoadCrest Brand System — brand.css
+   Source: BrandBook v12 / 2025
+   ============================================================ */
+
+/* ── FONTS ── */
+@font-face { font-family: 'Poppins'; src: url('fonts/Poppins-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('fonts/Poppins-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('fonts/Poppins-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('fonts/Poppins-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('fonts/Poppins-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('fonts/Poppins-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('fonts/Poppins-Black.ttf') format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
+
+/* ── BRAND COLOR TOKENS ── */
+:root {
+  /* Primary */
+  --lc-blue:        #224F81;   /* Pantone 2945 U — primary brand blue */
+  --lc-white:       #FFFFFF;
+
+  /* Dark backgrounds (dark-mode portal) */
+  --lc-dark-1:      #15182D;   /* Deepest bg — almost black navy */
+  --lc-dark-2:      #22325F;   /* Card / panel background */
+  --lc-dark-3:      #2c3f72;   /* Elevated card hover */
+
+  /* Accent blues */
+  --lc-sky:         #008FC5;   /* Interactive — links, buttons, highlights */
+  --lc-sky-deep:    #0E4594;   /* Darker accent blue */
+  --lc-teal:        #6ABFAE;   /* Secondary accent / success indicators */
+  --lc-ice:         #EDF6F6;   /* Lightest tint — light bg panels */
+
+  /* Semantic */
+  --lc-success:     #6ABFAE;
+  --lc-warning:     #f59e0b;
+  --lc-danger:      #ef4444;
+
+  /* Typography */
+  --lc-font:        'Poppins', Arial, sans-serif;
+  --lc-text:        #e2e8f0;
+  --lc-text-dim:    #94a3b8;
+  --lc-border:      rgba(34, 50, 95, 0.8);
+}
+
+/* ── UTILITY CLASSES ── */
+.lc-text-blue  { color: var(--lc-sky); }
+.lc-text-teal  { color: var(--lc-teal); }
+.lc-text-dim   { color: var(--lc-text-dim); }
+.lc-bg-dark    { background: var(--lc-dark-1); }
+.lc-bg-card    { background: var(--lc-dark-2); }
+.lc-font-poppins { font-family: var(--lc-font); }

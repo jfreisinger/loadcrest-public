@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoadCrest — MaaS Pricing Model</title>
+  <link rel="stylesheet" href="brand/brand.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lc-blue:     #224F81;
+      --lc-sky:      #008FC5;
+      --lc-teal:     #6ABFAE;
+      --lc-deep:     #0E4594;
+      --lc-dark-1:   #15182D;
+      --lc-dark-2:   #22325F;
+      --lc-ice:      #EDF6F6;
+      --white:       #FFFFFF;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--lc-dark-1);
+      color: var(--white);
+      min-height: 100vh;
+      padding: 48px 24px;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .header-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lc-teal);
+    }
+    .header-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      margin-top: 4px;
+    }
+    .header-right {
+      text-align: right;
+    }
+    .brand-name {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .brand-sub {
+      font-size: 10px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* ── Hero number block ── */
+    .hero {
+      background: var(--lc-dark-2);
+      border-radius: 16px;
+      padding: 40px 48px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-primary {
+      border-right: 1px solid rgba(255,255,255,0.08);
+      padding-right: 48px;
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lc-teal);
+      margin-bottom: 12px;
+    }
+    .hero-number {
+      font-size: 56px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .hero-unit {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+    }
+    .hero-equiv {
+      margin-top: 16px;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+    }
+    .hero-equiv strong {
+      color: var(--lc-sky);
+      font-weight: 600;
+    }
+
+    .conversion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .conv-cell {
+      background: rgba(255,255,255,0.04);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .conv-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .conv-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 4px;
+    }
+    .conv-cell.highlight {
+      background: rgba(0,143,197,0.15);
+      border: 1px solid rgba(0,143,197,0.35);
+    }
+    .conv-cell.highlight .conv-value {
+      color: var(--lc-sky);
+    }
+    .conv-cell.highlight .conv-label {
+      color: rgba(0,143,197,0.8);
+    }
+
+    /* ── Framing row ── */
+    .framing-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .frame-card {
+      background: var(--lc-dark-2);
+      border-radius: 16px;
+      padding: 28px 32px;
+    }
+    .frame-card-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--lc-teal);
+      margin-bottom: 16px;
+    }
+    .frame-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .frame-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.4;
+    }
+    .frame-list li::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--lc-teal);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .not-card .frame-list li::before {
+      background: rgba(255,255,255,0.2);
+    }
+    .not-card .frame-list li {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+    }
+    .not-card .frame-list li span {
+      text-decoration: line-through;
+    }
+
+    /* ── Scale table ── */
+    .scale-section {
+      background: var(--lc-dark-2);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--lc-teal);
+      margin-bottom: 20px;
+    }
+    .scale-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .scale-table th {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      padding: 0 12px 10px 0;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      white-space: nowrap;
+    }
+    .scale-table th:not(:first-child) { text-align: right; padding-left: 16px; }
+    .scale-table td {
+      padding: 11px 12px 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      white-space: nowrap;
+    }
+    .scale-table td:not(:first-child) { text-align: right; padding-left: 16px; }
+    .scale-table td:first-child { white-space: normal; }
+    .scale-table td:first-child { font-weight: 500; color: var(--white); }
+    .scale-table .arr-cell { font-weight: 600; color: var(--lc-teal); }
+    .scale-table tr.highlight-row td {
+      color: var(--white);
+      background: rgba(0,143,197,0.08);
+    }
+    .scale-table tr.highlight-row td:first-child {
+      padding-left: 10px;
+      border-radius: 6px 0 0 6px;
+    }
+    .scale-table tr.highlight-row td:last-child {
+      padding-right: 10px;
+      border-radius: 0 6px 6px 0;
+    }
+    .scale-table tr.highlight-row .arr-cell {
+      color: var(--lc-sky);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(0,143,197,0.2);
+      color: var(--lc-sky);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .badge.teal {
+      background: rgba(106,191,174,0.15);
+      color: var(--lc-teal);
+    }
+
+    /* ── Gen 2 banner ── */
+    .gen2-banner {
+      border-radius: 16px;
+      padding: 28px 36px;
+      background: linear-gradient(135deg, rgba(14,69,148,0.4) 0%, rgba(34,79,129,0.3) 100%);
+      border: 1px solid rgba(14,69,148,0.5);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .gen2-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--lc-sky);
+      margin-bottom: 8px;
+    }
+    .gen2-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      max-width: 520px;
+    }
+    .gen2-range {
+      text-align: center;
+    }
+    .gen2-range-value {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .gen2-range-label {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 20px;
+    }
+    .footer-note {
+      font-size: 10px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-date {
+      font-size: 10px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 580px) {
+      .hero { grid-template-columns: 1fr; padding: 28px 24px; }
+      .hero-primary { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding-right: 0; padding-bottom: 32px; }
+      .framing-row { grid-template-columns: 1fr; }
+      .gen2-banner { grid-template-columns: 1fr; }
+      .hero-number { font-size: 44px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="header-label">Business Model</div>
+      <div class="header-title">MaaS Pricing Model</div>
+    </div>
+    <div class="header-right">
+      <div class="brand-name">LoadCrest</div>
+      <div class="brand-sub">AI Data Center Power Infrastructure</div>
+    </div>
+  </div>
+
+  <!-- Hero: The Number -->
+  <div class="hero">
+    <div class="hero-primary">
+      <div class="hero-eyebrow">Gen 0 / Gen 1 — Primary Controls</div>
+      <div class="hero-number">$20,000</div>
+      <div class="hero-unit">per MW · per year</div>
+      <div class="hero-equiv">
+        Equivalent to <strong>$1.67 / kW-month</strong> —
+        the format your buyers already use in pro formas
+      </div>
+    </div>
+    <div>
+      <div style="margin-bottom:14px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);">Unit Conversions</div>
+        <div style="font-size:9px;font-weight:400;color:rgba(0,143,197,0.65);margin-top:3px;">highlighted = lead externally</div>
+      </div>
+      <div class="conversion-grid">
+        <div class="conv-cell">
+          <div class="conv-value">$20,000</div>
+          <div class="conv-label">per MW · year</div>
+        </div>
+        <div class="conv-cell">
+          <div class="conv-value">$20</div>
+          <div class="conv-label">per kW · year</div>
+        </div>
+        <div class="conv-cell">
+          <div class="conv-value">$1,667</div>
+          <div class="conv-label">per MW · month</div>
+        </div>
+        <div class="conv-cell highlight">
+          <div class="conv-value">$1.67</div>
+          <div class="conv-label">per kW · month</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Framing -->
+  <div class="framing-row">
+    <div class="frame-card">
+      <div class="frame-card-title">This pricing fits alongside</div>
+      <ul class="frame-list">
+        <li>Utility demand charges</li>
+        <li>Capacity reservation fees</li>
+        <li>Flexibility &amp; controllable-load services</li>
+        <li>Backup power contracts</li>
+        <li>Uptime &amp; resiliency fees</li>
+      </ul>
+    </div>
+    <div class="frame-card not-card">
+      <div class="frame-card-title" style="color:rgba(255,255,255,0.3);">This is not</div>
+      <ul class="frame-list">
+        <li><span>A software subscription</span></li>
+        <li><span>A generic SaaS annual fee</span></li>
+        <li><span>A usage-based consumption charge</span></li>
+        <li><span>An add-on to a hardware sale</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Scale Economics -->
+  <div class="scale-section">
+    <div class="section-title">Scale Economics — Annual MaaS ARR at $20,000 / MW / year</div>
+    <table class="scale-table">
+      <thead>
+        <tr>
+          <th>Deployment</th>
+          <th>MW</th>
+          <th>kW</th>
+          <th>Annual ARR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Q4 2026 PoC</td>
+          <td>1.2 MW</td>
+          <td>1,200 kW</td>
+          <td class="arr-cell">$24,000 / yr</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>American TerraWatt Project Zero <span class="badge">Partner-Delivered</span></td>
+          <td>20 MW</td>
+          <td>20,000 kW</td>
+          <td class="arr-cell">$400,000 / yr</td>
+        </tr>
+        <tr>
+          <td>Early commercial</td>
+          <td>50 MW</td>
+          <td>50,000 kW</td>
+          <td class="arr-cell">$1,000,000 / yr</td>
+        </tr>
+        <tr>
+          <td>100MW building block</td>
+          <td>100 MW</td>
+          <td>100,000 kW</td>
+          <td class="arr-cell">$2,000,000 / yr</td>
+        </tr>
+        <tr>
+          <td>Scale deployment</td>
+          <td>500 MW</td>
+          <td>500,000 kW</td>
+          <td class="arr-cell">$10,000,000 / yr</td>
+        </tr>
+        <tr style="border-bottom:none;">
+          <td>1 GW installed base</td>
+          <td>1,000 MW</td>
+          <td>1,000,000 kW</td>
+          <td class="arr-cell">$20,000,000 / yr</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:16px;font-size:11px;font-weight:300;color:rgba(255,255,255,0.35);">
+      Every 100 MW deployed = $2M in near-pure-profit recurring revenue at 70%+ gross margins.
+    </div>
+  </div>
+
+  <!-- Gen 2 Trajectory -->
+  <div class="gen2-banner">
+    <div>
+      <div class="gen2-label">Generation 2 Pricing Trajectory</div>
+      <div class="gen2-text">
+        After early deployments validate performance, premium pricing is defensible relative to the costs
+        LoadCrest eliminates — delayed energization, utility upgrades, generator oversizing, stranded EPC capital,
+        and curtailment risk. Applying Gen 2 pricing to an existing 100 MW installed base grows ARR by
+        <strong style="color:var(--white);">2–3× without adding a single new customer.</strong>
+      </div>
+    </div>
+    <div class="gen2-range">
+      <div class="gen2-range-value">$3–$5</div>
+      <div class="gen2-range-label">per kW · month (Gen 2 target)</div>
+      <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,0.3);">$36K–$60K / MW / yr</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-note">Internal — do not distribute. Pricing valid for Gen 0 / Gen 1 product. Gen 2 range is directional and requires sign-off before external use.</div>
+    <div class="footer-date">April 2026</div>
+  </div>
+
+</div>
+</body>
+</html>

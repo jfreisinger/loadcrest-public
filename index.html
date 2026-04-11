@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoadCrest — Materials</title>
+  <link rel="stylesheet" href="brand/brand.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #15182D;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+    .brand-name { font-size: 28px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .brand-sub { font-size: 11px; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 48px; }
+    .links { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 420px; }
+    .link-card {
+      display: block;
+      background: #22325F;
+      border: 1px solid rgba(0,143,197,0.25);
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-decoration: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .link-card:hover { border-color: rgba(0,143,197,0.6); background: rgba(14,69,148,0.4); }
+    .link-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .link-desc { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.5); }
+  </style>
+</head>
+<body>
+  <div class="brand-name">LoadCrest</div>
+  <div class="brand-sub">AI Data Center Power Infrastructure</div>
+  <div class="links">
+    <a class="link-card" href="pricing-model.html">
+      <div class="link-title">MaaS Pricing Model</div>
+      <div class="link-desc">$20,000/MW/year · $1.67/kW-month · scale economics · Gen 2 trajectory</div>
+    </a>
+    <a class="link-card" href="pricing-distinction.html">
+      <div class="link-title">Energy Cost vs. Infrastructure Value</div>
+      <div class="link-desc">$/kWh vs. $/kW-month · the gasoline vs. toll road distinction</div>
+    </a>
+  </div>
+</body>
+</html>
